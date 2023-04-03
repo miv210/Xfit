@@ -1,0 +1,23 @@
+﻿<Page x:Class="XFitWpf.Views.SectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:XFitWpf.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SectionPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Opacity="2">
+            <Button Content="Добавить" Margin="2" Command="{Binding AddNewSectionCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1">
+            
+        </DataGrid>
+    </Grid>
+</Page>
