@@ -14,18 +14,22 @@ namespace XFitWpf.ViewModels.PageViewmodels
 {
     public class SectionViewModel : BaseViewModel
     {
+        DataGrid sectionGrid;
         public List<Section> ListSection { get; set; }
+        public Section SelectedSection { get; set; }
         public Command AddNewSectionCommand { get; set; }
+        public Command DeleteSectionCommand { get; set; }
         public SectionViewModel() 
         { 
             ListSection = GetListSection();
             AddNewSectionCommand= new Command(AddNewSection);
+            DeleteSectionCommand = new Command(DeleteSection);
         }
 
         private void AddNewSection(object obj)
         { 
             AddSectionDialogWindow addSectionWindow = new AddSectionDialogWindow();
-            DataGrid sectionGrid = obj as DataGrid;
+            sectionGrid = obj as DataGrid;
             if (addSectionWindow.ShowDialog() == true)
             {
                 ListSection = new List<Section>();
@@ -36,6 +40,28 @@ namespace XFitWpf.ViewModels.PageViewmodels
             {
                 MessageBox.Show("Не удалось обновить");
             }
+            
+        }
+        private void DeleteSection(object obj)
+        {
+            sectionGrid = obj as DataGrid;
+            
+                try
+                {
+                    using (XFitBd_context db = new XFitBd_context())
+                    {
+                        db.Sections.Remove((Section)sectionGrid.SelectedItem);
+                        db.SaveChanges();
+                        MessageBox.Show("Данные удаленны");
+                        ListSection = new List<Section>();
+                        ListSection = GetListSection();
+                        sectionGrid.ItemsSource = ListSection;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             
         }
 
