@@ -21,7 +21,7 @@ namespace XFitWpf.ViewModels.DialogWindowViewModels
 
         private void AddSection(object obj)
         {
-            //Window wnd = obj as Window;
+            Window wnd = obj as Window;
             var newSection = new Section
             {
                 Lessons = Title,
@@ -34,7 +34,7 @@ namespace XFitWpf.ViewModels.DialogWindowViewModels
                     db.Sections.Add(newSection);
                     db.SaveChanges();
                     MessageBox.Show($"Секция {newSection.Lessons} добавлена");
-                    //wnd.Close();
+                    wnd.DialogResult = true;
                 }
                 catch
                 {

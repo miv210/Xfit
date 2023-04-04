@@ -30,8 +30,8 @@
                  VerticalAlignment="Center" Text="{Binding AmountOne}"/>
 
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" Opacity="2" HorizontalAlignment="Center">
-            <Button Content="Сохранить" Height="20" Command="{Binding AddSectionCommand}"/>
-            <Button Content="Назад" Height="20" Margin="20 0 0 0"/>
+            <Button Content="Сохранить" Height="20" Command="{Binding AddSectionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+            <Button IsCancel="True" Content="Назад" Height="20" Margin="20 0 0 0"/>
         </StackPanel>
     </Grid>
 </Window>

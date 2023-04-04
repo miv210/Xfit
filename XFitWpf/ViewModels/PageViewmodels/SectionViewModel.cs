@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using XFitWpf.Models;
 using XFitWpf.Views.DialogWindows;
 
@@ -20,12 +22,21 @@ namespace XFitWpf.ViewModels.PageViewmodels
             AddNewSectionCommand= new Command(AddNewSection);
         }
 
-        private void AddNewSection()
-        {
+        private void AddNewSection(object obj)
+        { 
             AddSectionDialogWindow addSectionWindow = new AddSectionDialogWindow();
-            addSectionWindow.ShowDialog();
-            ListSection = new List<Section>();
-            ListSection = GetListSection();
+            DataGrid sectionGrid = obj as DataGrid;
+            if (addSectionWindow.ShowDialog() == true)
+            {
+                ListSection = new List<Section>();
+                ListSection = GetListSection();
+                sectionGrid.ItemsSource = ListSection;
+            }
+            else
+            {
+                MessageBox.Show("Не удалось обновить");
+            }
+            
         }
 
         private List<Section> GetListSection()
@@ -34,7 +45,7 @@ namespace XFitWpf.ViewModels.PageViewmodels
             {
                 ListSection = db.Sections.ToList();
             }
-            return new List<Section>();
+            return ListSection;
         }
     }
 }

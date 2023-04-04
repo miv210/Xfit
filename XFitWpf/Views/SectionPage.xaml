@@ -14,10 +14,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Opacity="2">
-            <Button Content="Добавить" Margin="2" Command="{Binding AddNewSectionCommand}"/>
+            <Button Content="Добавить" Margin="2" Command="{Binding AddNewSectionCommand}" CommandParameter="{Binding ElementName=SectionGrid, Mode=OneWay}"/>
         </StackPanel>
-        <DataGrid Grid.Row="1">
-            
+        <DataGrid x:Name="SectionGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ListSection, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Lessons}"/>
+                <DataGridTextColumn Header="Сумма за одно занятие" Binding="{Binding Path=AmountForOneLesson}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>
