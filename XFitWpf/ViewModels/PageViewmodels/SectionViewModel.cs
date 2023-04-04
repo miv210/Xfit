@@ -45,7 +45,8 @@ namespace XFitWpf.ViewModels.PageViewmodels
         private void DeleteSection(object obj)
         {
             sectionGrid = obj as DataGrid;
-            
+            if(sectionGrid.SelectedItem != null)
+            {
                 try
                 {
                     using (XFitBd_context db = new XFitBd_context())
@@ -62,6 +63,11 @@ namespace XFitWpf.ViewModels.PageViewmodels
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
+            }
+            else
+            {
+                MessageBox.Show("Выберете объект для удаления");
+            }
             
         }
 

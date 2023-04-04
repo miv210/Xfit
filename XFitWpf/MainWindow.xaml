@@ -20,7 +20,7 @@
             </TabItem>
             <TabItem Header="Тренера">
                 <TabItem.Content>
-                    <Frame Source=""/>
+                    <Frame Source="/Views/TrainerPage.xaml"/>
                 </TabItem.Content>
             </TabItem>
         </TabControl>
