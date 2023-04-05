@@ -13,7 +13,7 @@ namespace XFitWpf.Models
         public int SectionId { get; set; }      
         public float Total { get; set; }
 
-        public List<SeasonTicket> SeasonTickets { get; set; }
+        public SeasonTicket SeasonTicket { get; set; }
         public Section? Section { get; set; }
     }
 }

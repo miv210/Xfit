@@ -15,10 +15,31 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" 
                     Opacity="2">
-            <Button Content="Добавить"/>
+            <Button Content="Добавить" Command="{Binding AddNewEmployeeCommand}" CommandParameter="{Binding ElementName=dataGrid, Mode=OneWay}"/>
+            <Button Content="Удалить" Command="{Binding DeleteEmployeeCommand}" CommandParameter="{Binding ElementName=dataGrid, Mode=OneWay}"/>
+            <Button Content="Создать абонемент" Command="{Binding AddNewSeasonTicketCommand}" CommandParameter="{Binding ElementName=dataGrid}"/>
         </StackPanel>
-        <DataGrid Grid.Row="1">
-            
+        <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ListEmployee}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding NumberPhone}"/>
+                <DataGridTextColumn Header="Номер абонемента" Binding="{Binding SeasonTicket.Id}"/>
+                <DataGridTextColumn Header="Общая Сумма" Binding="{Binding SeasonTicket.Amount.Total}"/>
+                <DataGridTextColumn Header="Секция" Binding="{Binding SeasonTicket.Trainer.Section.Lessons}"/>
+                <DataGridTemplateColumn Header="Тренер">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding SeasonTicket.Trainer.Surname}"/>
+                                <TextBlock Text="{Binding SeasonTicket.Trainer.Name}"/>
+                                <TextBlock Text="{Binding SeasonTicket.Trainer.Patronymic}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>

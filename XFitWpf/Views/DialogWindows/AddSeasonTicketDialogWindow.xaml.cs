@@ -10,21 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using XFitWpf.ViewModels.PageViewmodels;
+using XFitWpf.ViewModels.DialogWindowViewModels;
 
-namespace XFitWpf.Views
+namespace XFitWpf.Views.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для EmployeePage.xaml
+    /// Логика взаимодействия для AddSeasonTicketDialogWindow.xaml
     /// </summary>
-    public partial class EmployeePage : Page
+    public partial class AddSeasonTicketDialogWindow : Window
     {
-        public EmployeePage()
+        public AddSeasonTicketDialogWindow()
         {
             InitializeComponent();
-            DataContext = new EmployeeViewModel();
+            DataContext = new AddSeasonTicketDialogViewModel();
         }
     }
 }
